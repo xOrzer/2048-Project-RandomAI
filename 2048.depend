@@ -1,0 +1,78 @@
+# depslib dependency file v1.0
+1544180339 source:d:\documents\prog\2048\game.cpp
+	"game.h"
+	<iostream>
+	<cstdlib>
+	<vector>
+	<time.h>
+
+1544268548 
+
+1544180043 d:\documents\prog\2048\game.h
+
+1544180691 source:d:\documents\prog\2048\main.cpp
+	<iostream>
+	"game.h"
+	<string>
+	<time.h>
+
+1544200841 source:d:\profil\documents\ecole\projet 2048\2048\game.cpp
+	"game.h"
+	<iostream>
+	<cstdlib>
+	<vector>
+	<time.h>
+
+1544200987 d:\profil\documents\ecole\projet 2048\2048\game.h
+
+1544201381 source:d:\profil\documents\ecole\projet 2048\2048\main.cpp
+	<iostream>
+	"game.h"
+	<string>
+	<time.h>
+
+1544202085 source:d:\desktop\2048\game.cpp
+	"game.h"
+	<iostream>
+	<cstdlib>
+	<vector>
+	<time.h>
+
+1544200987 d:\desktop\2048\game.h
+
+1544201381 source:d:\desktop\2048\main.cpp
+	<iostream>
+	"game.h"
+	<string>
+	<time.h>
+
+1557423140 source:d:\desktop\code\2048\game.cpp
+	"game.h"
+	<iostream>
+	<cstdlib>
+	<vector>
+	<time.h>
+
+1557419917 d:\desktop\code\2048\game.h
+
+1544268548 source:d:\desktop\code\2048\main.cpp
+	<iostream>
+	"game.h"
+	<string>
+	<time.h>
+
+1544264948 source:/etudiants/tboitel/Documents/2048/main.cpp
+	<iostream>
+	"game.h"
+	<string>
+	<time.h>
+
+1557416317 /etudiants/tboitel/Documents/2048/game.h
+
+1557420647 source:/etudiants/tboitel/Documents/2048/game.cpp
+	"game.h"
+	<iostream>
+	<cstdlib>
+	<vector>
+	<time.h>
+

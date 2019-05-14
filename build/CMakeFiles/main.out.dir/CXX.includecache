@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/etudiants/tboitel/Documents/2048/game.cpp
+game.h
+/etudiants/tboitel/Documents/2048/game.h
+iostream
+-
+cstdlib
+-
+vector
+-
+time.h
+-
+
+/etudiants/tboitel/Documents/2048/game.h
+vector
+-
+string
+-
+
+/etudiants/tboitel/Documents/2048/main.cpp
+iostream
+-
+game.h
+/etudiants/tboitel/Documents/2048/game.h
+string
+-
+vector
+-
+time.h
+-
+tuple
+-
+

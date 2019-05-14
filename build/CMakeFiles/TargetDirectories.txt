@@ -1,0 +1,3 @@
+/etudiants/tboitel/Documents/2048/build/CMakeFiles/edit_cache.dir
+/etudiants/tboitel/Documents/2048/build/CMakeFiles/rebuild_cache.dir
+/etudiants/tboitel/Documents/2048/build/CMakeFiles/main.out.dir
