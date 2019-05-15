@@ -61,34 +61,41 @@ string press_touch(Game &game){
 
 
 auto randomAI(Game &g){
-    std::tuple<int, int> summary;
-    vector <string> possibleMoves;
     bool win = false;
     bool lost = false;
+    int alea = 0;
     int highest = 0;
     int score = 0;
-    bool victory = false;
-    string enh = "";
 
     do{
 
-        possibleMoves.clear();
-        g.clearPossibleMoves();
-        possibleMoves = g.getPossibleMoves();
+        srand(time(NULL));
 
-        if(!possibleMoves.empty()){
-            srand(time(NULL));
-            int alea = rand() % possibleMoves.size();
-            enh = g.press_touch_auto(possibleMoves[alea]);
+        g.searchPossibleMoves();
+
+        if(g.getPossibleMoves().size()!=0){
+            if(g.getPossibleMoves().size()>1){
+                alea = rand() % g.getPossibleMoves().size();
+                g.press_touch_auto(g.getPossibleMoves()[alea]);
+            }else{
+                g.press_touch_auto(g.getPossibleMoves()[0]);
+            }
         }
-        lost = g.isLost(possibleMoves);
+        //cout<<"ok2 !!"<<endl;
+
+        if(g.getPossibleMoves().size()==0)
+            lost = true;
+        lost = g.isLost(g.getPossibleMoves());
         win = g.checkWin();
 
+        g.clearPossibleMoves();
 
     }while(win == false && lost == false);
 
-    summary = std::make_tuple(g.getHighest(), g.getScore());
-    return summary;
+    g.print();
+
+    return std::make_tuple(g.getHighest(), g.getScore());
+
 }
 
 
@@ -97,24 +104,28 @@ void play(){
     Game g;
     g.init();
 
-    string enh = "";
-    bool win = false;
-    float score = 0;
-    float highest = 0;
+    srand(time(NULL));
+
+    //string enh = "";
+    //bool win = false;
+    //int nbWin = 0;
     int bestScore = 0;
-    int nbWin = 0;
+    int bestHighest = 0;
+    int score = 0;
+    int highest = 0;
 
-    auto summary = randomAI(g);
-    highest = std::get<0>(summary);
-    score = std::get<1>(summary);
-    cout<< "1 : " << highest <<endl << "2 : " << score;
+    std::tuple<int, int> summary (0,0);
+
+    summary = randomAI(g);
+    if(std::get<0>(summary) > bestHighest)
+        bestHighest = std::get<0>(summary);
+    if(std::get<1>(summary) > bestScore)
+        bestScore = std::get<1>(summary);
 
 
-    /*for(int i = 0; i < 1000; i++){
-        score = randomAI(g);
-        if(bestScore < score)
-            bestScore = score;
-    }*/
+
+    cout<< "Plus grande valeur atteinte : " << bestHighest <<endl << "Meilleur score : " << bestScore<<endl;
+
     //g.print();
 
     /*do{
@@ -136,9 +147,11 @@ void play(){
 
 int main()
 {
+    for(int i = 0; i<10; i++){
+        srand(time(NULL));
 
-    play();
-
+        play();
+    }
 
     return 0;
 }

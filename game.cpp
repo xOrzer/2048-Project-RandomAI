@@ -65,6 +65,7 @@ void Game::init(){
     /* Selection premier emplacement */
     int alea1 = rand()%4;
     int alea2 = rand()%4;
+
     /* Ajout dans le tableau */
     tab[alea1][alea2] = nbAlea;
 
@@ -115,21 +116,28 @@ void Game::clearPossibleMoves(){
 }
 
 vector<string> Game::getPossibleMoves(){
+    return possibleMoves;
+}
+
+void Game::searchPossibleMoves(){
+
     if(possibleDown())
         possibleMoves.push_back("s");
+
     if(possibleTop())
         possibleMoves.push_back("z");
+
     if(possibleLeft())
         possibleMoves.push_back("q");
+
     if(possibleRight())
         possibleMoves.push_back("d");
 
-    return possibleMoves;
 }
 
 
 bool Game::isLost(vector<string> v){
-    if(v.empty()){
+    if(v.size()==0){
         return true;
     }
 
@@ -158,22 +166,19 @@ vector <int> nbCaseVide;
 
 bool Game::possibleTop(){
 
-    bool isPossible = false;
-
     /* Décalage */
     for(int j = 0; j < 4; j++){
-        for(int i = 0; i < 4; i++){
-
-            if(tab[i][j] != 0){
-                if(tab[i][j] == tab[i-1][j] || tab[i-1][j] == 0){
-                    isPossible = true;
-                }
-            }
-
+        for(int i = 1; i < 4; i++){
+            if(tab[i][j] != 0 && tab[i-1][j] == 0)
+                return true;
+            if(tab[i][j] != 0 && tab[i-1][j] == tab[i][j])
+                return true;
+            if(tab[i][j] == 0)
+                continue;
         }//end for j
     }//end for i
 
-    return isPossible;
+    return false;
 }
 
 void Game::decalageTop(){
@@ -244,22 +249,19 @@ void Game::top(){
 /* Methode pour le bas */
 bool Game::possibleDown(){
 
-    bool isPossible = false;
-
     /* Décalage */
     for(int j = 0; j < 4; j++){
-        for(int i = 0; i < 4; i++){
-
-            if(tab[i][j] != 0){
-                if(tab[i][j] == tab[i+1][j] || tab[i+1][j] == 0){
-                    isPossible = true;
-                }
-            }
-
+        for(int i = 0; i < 3; i++){
+            if(tab[i][j] != 0 && tab[i+1][j] == 0)
+                return true;
+            if(tab[i][j] != 0 && tab[i+1][j] == tab[i][j])
+                return true;
+            if(tab[i][j] == 0)
+                continue;
         }//end for j
     }//end for i
 
-    return isPossible;
+    return false;
 }
 
 void Game::decalageDown(){
@@ -329,22 +331,19 @@ void Game::down(){
 
 bool Game::possibleRight(){
 
-    bool isPossible = false;
-
     /* Décalage */
-    for(int j = 0; j < 4; j++){
-        for(int i = 0; i < 4; i++){
-
-            if(tab[i][j] != 0  && j != 3){
-                if(tab[i][j] == tab[i][j+1] || tab[i][j+1] == 0){
-                    isPossible = true;
-                }
-            }
-
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 3; j++){
+            if(tab[i][j] != 0 && tab[i][j+1] == 0)
+                return true;
+            if(tab[i][j] != 0 && tab[i][j+1] == tab[i][j])
+                return true;
+            if(tab[i][j] == 0)
+                continue;
         }//end for j
     }//end for i
 
-    return isPossible;
+    return false;
 }
 
 void Game::decalageRight(){
@@ -415,22 +414,22 @@ void Game::right(){
 
 bool Game::possibleLeft(){
 
-    bool isPossible = false;
-
     /* Décalage */
-    for(int j = 0; j < 4; j++){
-        for(int i = 0; i < 4; i++){
+    for(int i = 0; i < 4; i++){
+        for(int j = 1; j < 4; j++){
+            //cout<<"i : "<<i<<"----- j : "<<j<<endl;
+            if(tab[i][j] != 0 && tab[i][j-1] == 0)
+                return true;
 
-            if(tab[i][j] != 0 && j != 0){
-                if(tab[i][j] == tab[i][j-1] || tab[i][j-1] == 0){
-                    isPossible = true;
-                }
-            }
+            if(tab[i][j] != 0 && tab[i][j-1] == tab[i][j])
+                return true;
 
+            if(tab[i][j] == 0)
+                continue;
         }//end for j
     }//end for i
 
-    return isPossible;
+    return false;
 }
 
 void Game::decalageLeft(){
@@ -495,23 +494,19 @@ void Game::left(){
     }
 }
 
-string Game::press_touch_auto(string touch){
+void Game::press_touch_auto(string touch){
 
     if(touch == "z"){
         top();
-        return "z";
     }
     else if(touch == "s"){
         down();
-        return "s";
     }
     else if(touch == "q"){
         left();
-        return "q";
     }
     else if(touch == "d"){
         right();
-        return "d";
     }
 }
 

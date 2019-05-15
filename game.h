@@ -13,8 +13,9 @@ class Game
         void down();
         void left();
         void right();
-        std::string press_touch_auto(std::string touch);
+        void press_touch_auto(std::string touch);
         std::vector<std::string> getPossibleMoves();
+        void searchPossibleMoves();
         void clearPossibleMoves();
         bool checkWin();
         bool isLost(std::vector<std::string> v);
