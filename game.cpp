@@ -12,7 +12,7 @@ using namespace std;
 int DeuxOuQuatre(){
 
     const int MAX = 100, MIN = 0;
-    srand(time(NULL));
+    //srand(time(NULL));
     int alea = (rand() % (MAX - MIN + 1)) + MIN;;
 
     // cout<<"Alea: "<< alea <<endl;
@@ -51,8 +51,14 @@ void Game::print(){
 /* Initialisation grille de jeu */
 void Game::init(){
 
+    for(int i; i<4;i++){
+        for(int j=0;j<4;j++){
+            tab[i][j]=0;
+        }
+    }
+
     /* Init alea */
-    srand(time(NULL));
+    //srand(time(NULL)+1);
 
     /* Tirage des aléatoires nombre (entre 2 et 4)*/
     int nbAlea = DeuxOuQuatre();
@@ -81,14 +87,6 @@ void Game::init(){
 
     /* Ajout dans le tableau */
     tab[alea3][alea4] = nbAlea2;
-
-
-
-    /*tab[0][0] = 2;
-    tab[0][1] = 2;
-    tab[0][2] = 2;
-    tab[0][3] = 4;*/
-
 
 }
 
@@ -146,7 +144,7 @@ bool Game::isLost(vector<string> v){
 
 void Game::alea(){
 
-vector <int> nbCaseVide;
+    vector <int> nbCaseVide;
     for(int i = 0; i < 4; i++){
         for(int j = 0; j < 4; j++){
             if(tab[i][j] == 0){
@@ -160,7 +158,6 @@ vector <int> nbCaseVide;
 
     tab[0][nbCaseVide[alea]] = alea2;
 }
-
 
 /* Methode pour le haut */
 
@@ -207,15 +204,16 @@ void Game::decalageTop(){
 void Game::additionTop(){
     /* Addition */
     for(int j = 0; j < 4; j++){
-            if(tab[0][j] == tab[1][j] && tab[0][j] == tab[2][j] && tab[0][j] == tab[3][j]){
-                int nb = tab[0][j] + tab[0][j];
-                tab[0][j] = nb;
-                tab[1][j] = nb;
-                tab[2][j] = 0;
-                tab[3][j] = 0;
-                score += 2*nb;
-                continue;
-            }
+        if(tab[0][j] == tab[1][j] && tab[0][j] == tab[2][j] && tab[0][j] == tab[3][j]){
+            int nb = tab[0][j] + tab[0][j];
+            tab[0][j] = nb;
+            tab[1][j] = nb;
+            tab[2][j] = 0;
+            tab[3][j] = 0;
+            score += 2*nb;
+            continue;
+        }
+
         for(int i = 0; i < 3; i++){
             if(tab[i][j] != 0){
                 if(tab[i+1][j] == tab[i][j]){
@@ -289,15 +287,16 @@ void Game::decalageDown(){
 void Game::additionDown(){
     /* Addition */
     for(int j = 3; j >= 0; j--){
-            if(tab[0][j] == tab[1][j] && tab[0][j] == tab[2][j] && tab[0][j] == tab[3][j]){
-                int nb = tab[0][j] + tab[0][j];
-                tab[0][j] = 0;
-                tab[1][j] = 0;
-                tab[2][j] = nb;
-                tab[3][j] = nb;
-                score += 2*nb;
-                continue;
-            }
+        if(tab[0][j] == tab[1][j] && tab[0][j] == tab[2][j] && tab[0][j] == tab[3][j]){
+            int nb = tab[0][j] + tab[0][j];
+            tab[0][j] = 0;
+            tab[1][j] = 0;
+            tab[2][j] = nb;
+            tab[3][j] = nb;
+            score += 2*nb;
+            continue;
+        }
+
         for(int i = 3; i >= 0; i--){
             if(tab[i][j] != 0){
                 if(tab[i-1][j] == tab[i][j]){
@@ -371,15 +370,15 @@ void Game::decalageRight(){
 void Game::additionRight(){
     /* Addition */
     for(int i = 3; i >= 0; i--){
-            if(tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == tab[i][3]){
-                int nb = tab[i][0] + tab[i][0];
-                tab[i][0] = 0;
-                tab[i][1] = 0;
-                tab[i][2] = nb;
-                tab[i][3] = nb;
-                score += 2*nb;
-                continue;
-            }
+        if(tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == tab[i][3]){
+            int nb = tab[i][0] + tab[i][0];
+            tab[i][0] = 0;
+            tab[i][1] = 0;
+            tab[i][2] = nb;
+            tab[i][3] = nb;
+            score += 2*nb;
+            continue;
+        }
 
         for(int j = 3; j >= 0; j--){
             if(tab[i][j] != 0){
@@ -457,15 +456,16 @@ void Game::decalageLeft(){
 void Game::additionLeft(){
     /* Addition */
     for(int i = 0; i < 4; i++){
-            if(tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == tab[i][3]){
-                int nb = tab[i][0] + tab[i][0];
-                tab[i][0] = nb;
-                tab[i][1] = nb;
-                tab[i][2] = 0;
-                tab[i][3] = 0;
-                score += 2*nb;
-                continue;
-            }
+        if(tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == tab[i][3]){
+            int nb = tab[i][0] + tab[i][0];
+            tab[i][0] = nb;
+            tab[i][1] = nb;
+            tab[i][2] = 0;
+            tab[i][3] = 0;
+            score += 2*nb;
+            continue;
+        }
+
         for(int j = 0; j < 3; j++){
             if(tab[i][j] != 0){
                 if(tab[i][j+1] == tab[i][j]){
