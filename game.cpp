@@ -12,10 +12,7 @@ using namespace std;
 int DeuxOuQuatre(){
 
     const int MAX = 100, MIN = 0;
-    //srand(time(NULL));
     int alea = (rand() % (MAX - MIN + 1)) + MIN;;
-
-    // cout<<"Alea: "<< alea <<endl;
 
     if(alea < 90)
         return 2;
@@ -36,7 +33,6 @@ Game::Game(){
 
 /* Affichage grille de jeu */
 void Game::print(){
-    //system("CLS");
 
     cout << " ============== 2048 ============== " << endl << endl;
 
@@ -56,9 +52,6 @@ void Game::init(){
             tab[i][j]=0;
         }
     }
-
-    /* Init alea */
-    //srand(time(NULL)+1);
 
     /* Tirage des aléatoires nombre (entre 2 et 4)*/
     int nbAlea = DeuxOuQuatre();
@@ -87,6 +80,7 @@ void Game::init(){
 
     /* Ajout dans le tableau */
     tab[alea3][alea4] = nbAlea2;
+
 
 }
 
@@ -195,7 +189,6 @@ void Game::decalageTop(){
                     tab[i][j] = 0;
                 k++;
             }
-        //cout<<"tab["<<i<<"]["<<j<<"]: "<<tab[i][j]<<endl;
         }//end for j
         k=0;
     }//end for i
@@ -278,7 +271,6 @@ void Game::decalageDown(){
                     tab[i][j] = 0;
                 k--;
             }
-        //cout<<"tab["<<i<<"]["<<j<<"]: "<<tab[i][j]<<endl;
         }//end for j
         k=3;
     }//end for i
@@ -361,7 +353,6 @@ void Game::decalageRight(){
                     tab[i][j] = 0;
                 k--;
             }
-        //cout<<"tab["<<i<<"]["<<j<<"]: "<<tab[i][j]<<endl;
         }//end for j
         k=3;
     }//end for i
@@ -416,7 +407,6 @@ bool Game::possibleLeft(){
     /* Décalage */
     for(int i = 0; i < 4; i++){
         for(int j = 1; j < 4; j++){
-            //cout<<"i : "<<i<<"----- j : "<<j<<endl;
             if(tab[i][j] != 0 && tab[i][j-1] == 0)
                 return true;
 
@@ -447,7 +437,6 @@ void Game::decalageLeft(){
                     tab[i][j] = 0;
                 k++;
             }
-        //cout<<"tab["<<i<<"]["<<j<<"]: "<<tab[i][j]<<endl;
         }//end for j
         k=0;
     }//end for i

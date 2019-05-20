@@ -5,6 +5,8 @@
 #include <time.h>
 #include <unistd.h>
 #include <tuple>
+#include <sys/time.h>
+
 
 using namespace std;
 
@@ -92,31 +94,18 @@ auto randomAI(Game &g){
 
 }
 
-
-/*auto play(Game &g){
+void playAI(int nb){
 
     int bestScore = 0;
     int bestHighest = 0;
-
     std::tuple<int, int> summary (0,0);
-    return randomAI(g);
-    if(lost)
-        cout<<"Perdu !" <<endl + "Score : " + g.score <<endl;
+    struct timeval time;
 
-    if(win)
-        cout<<"GG t'as gagné !"<<endl + "Score : " + g.score <<endl +;
-}*/
+    gettimeofday(&time,NULL);
 
+    srand((time.tv_sec * 1000) + (time.tv_usec / 1000));
 
-int main()
-{
-    int bestScore = 0;
-    int bestHighest = 0;
-    std::tuple<int, int> summary (0,0);
-
-    srand(time(NULL));
-
-    for(int i = 0; i<10000; i++){
+    for(int i = 0; i<nb; i++){
 
         Game g;
         g.init();
@@ -131,7 +120,14 @@ int main()
     }
 
     cout<< "Plus grande valeur atteinte : " << bestHighest <<endl << "Meilleur score : " << bestScore<<endl;
+}
 
+int main()
+{
+    int nb;
+    cout<<"Nombre de répétition ? ";
+    cin>>nb;
+    playAI(nb);
 
     return 0;
 }
